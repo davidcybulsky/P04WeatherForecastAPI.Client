@@ -20,8 +20,10 @@
             <Label x:Name="lblTemperatureValue" HorizontalAlignment="Center" Content=".."></Label>
             <Label HorizontalAlignment="Center" Content="Daily forecast:"/>
             <Label x:Name="lblDailyWeather" HorizontalAlignment="Center">...</Label>
-            <Label Content="Five day daily forecast:" HorizontalAlignment="Center"/>
+            <Label Content="Five days daily forecast:" HorizontalAlignment="Center"/>
             <Label x:Name="lblFiveDayWeather" HorizontalAlignment="Center">...</Label>
+            <Label Content="Twelve hours hourly weather" HorizontalAlignment="Center"/>
+            <Label x:Name="lblHourlyWeather" HorizontalAlignment="Center">...</Label>
         </StackPanel>
     </DockPanel>
 </Window>

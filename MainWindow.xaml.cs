@@ -51,6 +51,13 @@ namespace P04WeatherForecastAPI.Client
                     content += daily.Temperature.Minimum.Value + " " + daily.Temperature.Minimum.Unit + " - " + daily.Temperature.Maximum.Value + " " + daily.Temperature.Maximum.Unit + "\n";
                 }
                 lblFiveDayWeather.Content = content;
+                var dayhourly = await accuWeatherService.GetTwelveHourHourlyWeather(selectedCity.Key);
+                content = "";
+                foreach (var hourly in dayhourly)
+                {
+                    content += hourly.Temperature.Value + " " + hourly.Temperature.Unit + "\n";
+                }
+                lblHourlyWeather.Content = content;
             }
         }
     }
