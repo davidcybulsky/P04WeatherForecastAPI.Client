@@ -38,9 +38,19 @@ namespace P04WeatherForecastAPI.Client
             if (selectedCity != null)
             {
                 var weather = await accuWeatherService.GetCurrentConditions(selectedCity.Key);
+                //var weather = await accuWeatherService.GetCurrentConditions(selectedCity.Key);
                 lblCityName.Content = selectedCity.LocalizedName;
                 double tempValue = weather.Temperature.Metric.Value;
                 lblTemperatureValue.Content = Convert.ToString(tempValue);
+                var dailyForecast = await accuWeatherService.GetOneDayDailyWeather(selectedCity.Key);
+                lblDailyWeather.Content = dailyForecast.Temperature.Minimum.Value + " " + dailyForecast.Temperature.Minimum.Unit + " - " + dailyForecast.Temperature.Maximum.Value + " " + dailyForecast.Temperature.Maximum.Unit;
+                var fiveDays = await accuWeatherService.GetFiveDayDailyWeather(selectedCity.Key);
+                string content = "";
+                foreach (var daily in fiveDays)
+                {
+                    content += daily.Temperature.Minimum.Value + " " + daily.Temperature.Minimum.Unit + " - " + daily.Temperature.Maximum.Value + " " + daily.Temperature.Maximum.Unit + "\n";
+                }
+                lblFiveDayWeather.Content = content;
             }
         }
     }

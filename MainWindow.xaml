@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P04WeatherForecastAPI.Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="200" Width="300">
+        Title="MainWindow" Height="433" Width="497">
     <DockPanel>
         <StackPanel Width="150" DockPanel.Dock="Left">
             <Label Content="City:" ></Label>
@@ -18,6 +18,10 @@
             <Label x:Name="lblCityName" HorizontalAlignment="Center" Content="..."></Label>
             <Label  HorizontalAlignment="Center" Content="is:"></Label>
             <Label x:Name="lblTemperatureValue" HorizontalAlignment="Center" Content=".."></Label>
+            <Label HorizontalAlignment="Center" Content="Daily forecast:"/>
+            <Label x:Name="lblDailyWeather" HorizontalAlignment="Center">...</Label>
+            <Label Content="Five day daily forecast:" HorizontalAlignment="Center"/>
+            <Label x:Name="lblFiveDayWeather" HorizontalAlignment="Center">...</Label>
         </StackPanel>
     </DockPanel>
 </Window>

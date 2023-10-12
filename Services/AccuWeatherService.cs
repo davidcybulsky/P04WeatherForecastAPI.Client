@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using P04WeatherForecastAPI.Client.Forecast;
 using P04WeatherForecastAPI.Client.Models;
 using System.IO;
 using System.Linq;
@@ -85,51 +86,51 @@ namespace P04WeatherForecastAPI.Client.Services
             }
         }
 
-        public async Task<Weather> GetOneDayDailyWeather(string cityKey)
+        public async Task<DailyForecast> GetOneDayDailyWeather(string cityKey)
         {
             string uri = base_url + "/" + string.Format(one_day_of_daily_forecast, cityKey, api_key, language);
             using (HttpClient client = new HttpClient())
             {
                 var response = await client.GetAsync(uri);
                 string json = await response.Content.ReadAsStringAsync();
-                Weather[] weathers = JsonConvert.DeserializeObject<Weather[]>(json);
-                return weathers.FirstOrDefault();
+                DailyForecastResponse response1 = JsonConvert.DeserializeObject<DailyForecastResponse>(json);
+                return response1.DailyForecasts.FirstOrDefault();
             }
         }
 
-        public async Task<Weather> GetFiveDayDailyWeather(string cityKey)
+        public async Task<DailyForecast[]> GetFiveDayDailyWeather(string cityKey)
         {
             string uri = base_url + "/" + string.Format(five_days_of_daily_forecast, cityKey, api_key, language);
             using (HttpClient client = new HttpClient())
             {
                 var response = await client.GetAsync(uri);
                 string json = await response.Content.ReadAsStringAsync();
-                Weather[] weathers = JsonConvert.DeserializeObject<Weather[]>(json);
-                return weathers.FirstOrDefault();
+                DailyForecastResponse response1 = JsonConvert.DeserializeObject<DailyForecastResponse>(json);
+                return response1.DailyForecasts;
             }
         }
 
-        public async Task<Weather> GetOneHourHourlyWeather(string cityKey)
+        public async Task<DailyForecast> GetOneHourHourlyWeather(string cityKey)
         {
             string uri = base_url + "/" + string.Format(one_hour_of_hourly_forecast, cityKey, api_key, language);
             using (HttpClient client = new HttpClient())
             {
                 var response = await client.GetAsync(uri);
                 string json = await response.Content.ReadAsStringAsync();
-                Weather[] weathers = JsonConvert.DeserializeObject<Weather[]>(json);
-                return weathers.FirstOrDefault();
+                DailyForecast[] weather = JsonConvert.DeserializeObject<DailyForecast[]>(json);
+                return weather.FirstOrDefault();
             }
         }
 
-        public async Task<Weather> GetTwelveHourHourlyWeather(string cityKey)
+        public async Task<DailyForecast> GetTwelveHourHourlyWeather(string cityKey)
         {
             string uri = base_url + "/" + string.Format(twelve_hours_of_hourly_forecast, cityKey, api_key, language);
             using (HttpClient client = new HttpClient())
             {
                 var response = await client.GetAsync(uri);
                 string json = await response.Content.ReadAsStringAsync();
-                Weather[] weathers = JsonConvert.DeserializeObject<Weather[]>(json);
-                return weathers.FirstOrDefault();
+                DailyForecast[] weather = JsonConvert.DeserializeObject<DailyForecast[]>(json);
+                return weather.FirstOrDefault();
             }
         }
 
