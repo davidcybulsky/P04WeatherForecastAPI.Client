@@ -3,21 +3,26 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converters="clr-namespace:P04WeatherForecastAPI.Client.Converters"
         xmlns:local="clr-namespace:P04WeatherForecastAPI.Client"
         mc:Ignorable="d"
         Title="MainWindow" Height="433" Width="497">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="boolToVisConv" ></BooleanToVisibilityConverter>
+        <converters:TemperatureToDisplayConverter x:Key="tmpToDispConv"></converters:TemperatureToDisplayConverter>
+    </Window.Resources>
     <DockPanel>
         <StackPanel Width="150" DockPanel.Dock="Left">
             <Label Content="City:" ></Label>
             <TextBox x:Name="txtCity"></TextBox>
-            <Button x:Name="btnSearch" Content="Search" Click="btnSearch_Click"></Button>
-            <ListBox x:Name="lbData" DisplayMemberPath="LocalizedName" SelectionChanged="lbData_SelectionChanged"></ListBox>
+            <Button x:Name="btnSearch" Content="Search" Command="{Binding LoadCitiesCommand}" CommandParameter="{Binding Text, ElementName=txtCity}"></Button>
+            <ListBox x:Name="lbData" DisplayMemberPath="LocalizedName" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectedCity}"></ListBox>
         </StackPanel>
         <StackPanel>
             <Label HorizontalAlignment="Center" Content="Temperature for city:"></Label>
-            <Label x:Name="lblCityName" HorizontalAlignment="Center" Content="..."></Label>
+            <Label x:Name="lblCityName" HorizontalAlignment="Center" Content="{Binding SelectedCity.LocalizedName}"></Label>
             <Label  HorizontalAlignment="Center" Content="is:"></Label>
-            <Label x:Name="lblTemperatureValue" HorizontalAlignment="Center" Content=".."></Label>
+            <Label x:Name="lblTemperatureValue" HorizontalAlignment="Center" Content="{Binding WeatherView.CurrentTemperature, Converter={StaticResource tmpToDispConv}}"></Label>
             <Label HorizontalAlignment="Center" Content="Daily forecast:"/>
             <Label x:Name="lblDailyWeather" HorizontalAlignment="Center">...</Label>
             <Label Content="Five days daily forecast:" HorizontalAlignment="Center"/>

@@ -14,7 +14,7 @@ namespace P04WeatherForecastAPI.Client
         public App()
         {
             var serviceCollection = new ServiceCollection();
-            serviceCollection.ConfigureServices();
+            DependencyInjection.ConfigureServices(serviceCollection);
             _serviceProvider = serviceCollection.BuildServiceProvider();
         }
 
