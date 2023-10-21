@@ -1,6 +1,6 @@
 ﻿namespace P04WeatherForecastAPI.Client.Forecast
 {
-    internal class Day
+    public class Day
     {
         public int Icon { get; set; }
         public string IconPhrase { get; set; }

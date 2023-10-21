@@ -2,7 +2,7 @@
 
 namespace P04WeatherForecastAPI.Client.Forecast
 {
-    internal class DailyForecast
+    public class DailyForecast
     {
         public DateTime Date { get; set; }
         public int EpochDate { get; set; }
